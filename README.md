@@ -2,7 +2,8 @@
 
 ## Scripts
 
-Running the app with hot reload, use http://localhost:8000 to access it
+Running the app with hot reload, use http://localhost:8000 to access it.
+open http://localhost:8000/docs to access the documentation
 
 > uvicorn main:app --reload
 
@@ -16,11 +17,15 @@ Running the app with hot reload, use http://localhost:8000 to access it
 
 Installing environment
 
-> conda env create -f environment.yml
+```bash
+conda env create -f environment.yml
+```
 
 Installing packages
 
-> conda install --name indodish-backend spec-file.txt
+```bash
+conda install --name indodish-backend spec-file.txt
+```
 
 ### Using venv
 
@@ -28,22 +33,32 @@ Installing packages
 
 Installing virtualenv
 
-> pip install virtualenv
+```bash
+pip install virtualenv
+```
 
 Creating virtual environment
 
-> python -m venv venv
+```bash
+python -m venv venv
+```
 
 Activating the virtual environment
 
 Windows
 
-> .\venv\Scripts\activate
+```bash
+.\venv\Scripts\activate
+```
 
 MacOS / Linux
 
-> source ./venv/bin/activate
+```bash
+source ./venv/bin/activate
+```
 
 Installing packages
 
-> pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
+```
