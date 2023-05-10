@@ -4,6 +4,17 @@
 
 [Reference](https://github.com/zhanymkanov/fastapi-best-practices#4-chain-dependencies)
 
+## Prerequisite
+
+Before running the application be sure to create **.env** file on the root folder, please use the following template
+
+```env
+DATABASE_URI = "<your_postgresql_uri>"
+ACCESS_TOKEN_SECRET_KEY = "<access_token_secret_key>"
+REFRESH_TOKEN_SECRET_KEY = "<refresh_token_secret_key>"
+
+```
+
 ## Scripts
 
 Running the app with hot reload, use http://localhost:8000 to access it.
@@ -32,6 +43,8 @@ Activating environment
 ```bash
 conda activate <environment_name>
 ```
+
+Installing packages
 
 ```bash
 pip install -r ./requirements/dev.txt
