@@ -1,11 +1,17 @@
 # IndODish-BackEnd
 
+## File Structure
+
+[Reference](https://github.com/zhanymkanov/fastapi-best-practices#4-chain-dependencies)
+
 ## Scripts
 
 Running the app with hot reload, use http://localhost:8000 to access it.
 open http://localhost:8000/docs to access the documentation
 
-> uvicorn main:app --reload
+```bash
+uvicorn src.main:app --reload
+```
 
 ## Installing packages
 
@@ -15,16 +21,20 @@ open http://localhost:8000/docs to access the documentation
 
 [Conda documentation](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 
-Installing environment
+Creating environment
 
 ```bash
-conda env create -f environment.yml
+conda env create --name <environment_name> python=3.10
 ```
 
-Installing packages
+Activating environment
 
 ```bash
-conda install --name indodish-backend spec-file.txt
+conda activate <environment_name>
+```
+
+```bash
+pip install -r ./requirements/dev.txt
 ```
 
 ### Using venv
@@ -60,5 +70,5 @@ source ./venv/bin/activate
 Installing packages
 
 ```bash
-pip install -r requirements.txt
+pip install -r ./requirements/dev.txt
 ```
