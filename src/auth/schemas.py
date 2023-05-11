@@ -1,5 +1,5 @@
-from src.models import ORJSONModel
-from pydantic import EmailStr, root_validator, validator
+from src.schemas import ORJSONModel
+from pydantic import EmailStr, root_validator, validator, Field
 
 
 class NewUser(ORJSONModel):
@@ -32,5 +32,19 @@ class NewUser(ORJSONModel):
         return values
 
 
+class UserLogin(ORJSONModel):
+    email: EmailStr
+    password: str
+
+
 class UserResponse(ORJSONModel):
     email: EmailStr
+
+
+class JWTData(ORJSONModel):
+    user_id: str = Field(alias="sub")
+
+
+class AccessTokenResponse(ORJSONModel):
+    access_token: str
+    refresh_token: str

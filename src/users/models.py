@@ -26,4 +26,5 @@ class User(Base):
     created_at = Column(
         "created_at", DateTime, server_default=func.now(), nullable=False
     )
+
     updated_at = Column("updated_at", DateTime, onupdate=func.now(), nullable=True)
