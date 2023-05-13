@@ -22,6 +22,7 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 from src.auth.models import refresh_token
 from src.users.models import user
+from src.contact_form.models import contact_form
 
 target_metadata = metadata
 
