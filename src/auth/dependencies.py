@@ -9,7 +9,7 @@ from src.auth.schemas import NewUser
 from src.auth.exceptions import EmailTaken, RefreshTokenNotValid
 
 
-async def valid_user_create(new_user: NewUser):
+async def valid_user_create(new_user: NewUser) -> NewUser:
     if await services.get_user_by_email(new_user.email):
         raise EmailTaken()
 
