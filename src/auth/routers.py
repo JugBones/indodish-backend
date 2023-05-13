@@ -6,22 +6,34 @@ from src.auth.dependencies import (
     valid_refresh_token,
     valid_refresh_token_user,
 )
-from src.auth.schemas import NewUser, UserLogin, UserResponse, AccessTokenResponse
+from src.auth.schemas import (
+    NewUser,
+    UserLogin,
+    UserResponse,
+    AccessTokenResponse,
+)
 
-router = APIRouter(prefix="/auth")
+router = APIRouter(prefix="/auth", tags=["auth"])
 
 
 @router.post(
-    "/register", status_code=status.HTTP_201_CREATED, response_model=UserResponse
+    "/register",
+    status_code=status.HTTP_201_CREATED,
+    response_model=UserResponse,
+    description="Endpoint for user registration",
 )
 async def register_user(
     new_user: NewUser = Depends(valid_user_create),
 ) -> dict[str, str]:
     user = await services.create_user(new_user)
-    return {"email": user["email"]}
+    return {"email": user.email}
 
 
-@router.post("/tokens", response_model=AccessTokenResponse)
+@router.post(
+    "/tokens",
+    response_model=AccessTokenResponse,
+    description="Endpoint for sign in",
+)
 async def authenticate_user(
     user_credential: UserLogin, response: Response
 ) -> AccessTokenResponse:
@@ -32,12 +44,16 @@ async def authenticate_user(
 
     return AccessTokenResponse(
         access_token=jwt.create_access_token(user=user),
-        refresh_token=refresh_token_value,
+        refresh_token=str(refresh_token_value),
     )
 
 
-@router.put("/tokens", response_model=AccessTokenResponse)
-async def refresh_tokens(
+@router.put(
+    "/tokens",
+    response_model=AccessTokenResponse,
+    description="Endpoint to refresh access tokens",
+)
+async def refresh_access_token(
     worker: BackgroundTasks,
     response: Response,
     refresh_token: Record = Depends(valid_refresh_token),
@@ -54,7 +70,10 @@ async def refresh_tokens(
     )
 
 
-@router.delete("tokens")
+@router.delete(
+    "/tokens",
+    description="Endpoint for signing out users, it will expires user's refresh token",
+)
 async def logout_user(
     response: Response, refresh_token: Record = Depends(valid_refresh_token)
 ) -> None:
