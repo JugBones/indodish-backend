@@ -38,11 +38,14 @@ class UserLogin(ORJSONModel):
 
 
 class UserResponse(ORJSONModel):
-    email: EmailStr
+    first_name: str
+    last_name: str
+    restaurant_id: str
 
 
 class JWTData(ORJSONModel):
     user_id: str = Field(alias="sub")
+    restaurant_id: str
 
 
 class AccessTokenResponse(ORJSONModel):

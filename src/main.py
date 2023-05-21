@@ -1,9 +1,13 @@
 from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
+from src.config import settings
 from src.database import database, metadata, engine
 
 from src.auth.routers import router as auth_router
 from src.users.routers import router as users_router
 from src.contact_form.routers import router as contact_form_router
+from src.restaurants.routers import router as restaurant_router
+from src.cart.routers import router as cart_router
 
 app = FastAPI(
     title="IndODish API",
@@ -13,13 +17,25 @@ app = FastAPI(
 
 metadata.create_all(bind=engine)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.CORS_ORIGINS,
+    allow_origin_regex=settings.CORS_ORIGINS_REGEX,
+    allow_credentials=True,
+    allow_methods=("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"),
+    allow_headers=settings.CORS_HEADERS,
+)
+
+
 app.include_router(auth_router)
+app.include_router(restaurant_router)
 app.include_router(users_router)
+app.include_router(cart_router)
 app.include_router(contact_form_router)
 
 
-@app.get("/")
-def root():
+@app.get("/", tags=["health"])
+def health():
     return {
         "title": "IndODish API",
         "description": "COMP6703001 - Web Application Development and Security (Final Project)",  # noqa: line to long - Flake8(E501)

@@ -16,12 +16,14 @@ async def valid_user_create(new_user: NewUser) -> NewUser:
     return new_user
 
 
-async def valid_refresh_token(refresh_token: Annotated[str, Cookie()]) -> Record:
+async def valid_refresh_token(
+    refresh_token: Annotated[str, Cookie(..., alias="refresh_token")] = None
+) -> Record:
     db_refresh_token = await services.get_refresh_token(refresh_token)
     if not db_refresh_token:
         raise RefreshTokenNotValid()
 
-    if not _is_valid_refresh_token(refresh_token):
+    if not __is_valid_refresh_token(db_refresh_token):
         raise RefreshTokenNotValid()
 
     return db_refresh_token
@@ -37,5 +39,5 @@ async def valid_refresh_token_user(
     return user
 
 
-def _is_valid_refresh_token(db_refresh_token: Record) -> bool:
-    return datetime.utcnow() <= db_refresh_token.expires_at
+def __is_valid_refresh_token(db_refresh_token: Record) -> bool:
+    return datetime.utcnow() <= db_refresh_token.expired_at

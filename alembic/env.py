@@ -20,9 +20,11 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from src.auth.models import refresh_token
-from src.users.models import user
-from src.contact_form.models import contact_form
+from src.address.models import address  # noqa
+from src.users.models import user  # noqa
+from src.auth.models import refresh_token  # noqa
+from src.restaurants.models import restaurant  # noqa
+from src.contact_form.models import contact_form  # noqa
 
 target_metadata = metadata
 

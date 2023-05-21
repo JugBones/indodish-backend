@@ -1,9 +1,9 @@
 from src import utils
-from uuid import uuid4
 from datetime import timedelta, datetime
 from sqlalchemy import insert
 from databases.interfaces import Record
 
+from jose import jwt
 from src.database import database
 from src.auth.config import auth_settings
 from src.auth.schemas import NewUser, UserLogin
@@ -54,42 +54,50 @@ async def get_user_by_id(id: str) -> Record | None:
 
 
 async def create_refresh_token(
-    *, user_id: str, refresh_token_value: str | None = None
-) -> str:
-    if not refresh_token_value:
-        refresh_token_value = utils.generate_random_alphanumeric(64)
+    *,
+    user_id: str,
+    refresh_token_value: str | None = None,
+    expires_delta: timedelta = timedelta(
+        days=auth_settings.REFRESH_TOKEN_EXPIRE_DELTA_DAYS
+    ),
+):
+    jwt_data = {
+        "sub": utils.generate_random_alphanumeric(64),
+        "user_id": user_id,
+        "exp": datetime.utcnow() + expires_delta,
+    }
 
-    insert_query = refresh_token.insert().values(
+    insert_query = insert(refresh_token).values(
         {
-            "id": uuid4(),
-            "refresh_token": refresh_token_value,
-            "expires_at": datetime.utcnow()
-            + timedelta(days=auth_settings.REFRESH_TOKEN_EXPIRE_DELTA_DAYS),
-            "user_id": user_id,
+            "user_id": jwt_data["user_id"],
+            "refresh_token": jwt_data["sub"],
+            "expired_at": jwt_data["exp"],
         }
     )
 
     await database.execute(insert_query)
 
-    return refresh_token
+    return jwt.encode(
+        claims=jwt_data,
+        key=auth_settings.REFRESH_TOKEN_SECRET_KEY,
+        algorithm=auth_settings.JWT_ALGORITHM,
+    )
 
 
 async def get_refresh_token(refresh_token_value: str) -> Record | None:
+    if refresh_token_value is None:
+        return None
+
+    jwt_data = jwt.decode(refresh_token_value, auth_settings.REFRESH_TOKEN_SECRET_KEY)
+
     select_query = refresh_token.select().where(
-        refresh_token.c.refresh_token == refresh_token
+        refresh_token.c.refresh_token == jwt_data["sub"]
     )
 
     return await database.fetch_one(select_query)
 
 
 async def expire_refresh_token(refresh_token_id: str) -> None:
-    update_query = (
-        refresh_token.update()
-        .values(
-            expires_at=datetime.utcnow()
-            - timedelta(days=auth_settings.REFRESH_TOKEN_EXPIRE_DELTA_DAYS)
-        )
-        .where(refresh_token.c.id == refresh_token_id)
-    )
+    delete_query = refresh_token.delete().where(refresh_token.c.id == refresh_token_id)
 
-    await database.execute(update_query)
+    await database.execute(delete_query)

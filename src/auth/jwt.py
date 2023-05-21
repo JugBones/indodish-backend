@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
-
-from fastapi import Depends
+from typing import Annotated
+from fastapi import Depends, Cookie
 from fastapi.security import OAuth2PasswordBearer
 
 from jose import JWTError, jwt
@@ -19,7 +19,11 @@ def create_access_token(
         minutes=auth_settings.ACCESS_TOKEN_EXPIRE_DELTA_MINUTES
     ),
 ) -> str:
-    jwt_data = {"sub": str(user.id), "exp": datetime.utcnow() + expires_delta}
+    jwt_data = {
+        "sub": str(user.id),
+        "restaurant_id": str(user.restaurant_id),
+        "exp": datetime.utcnow() + expires_delta,
+    }
 
     return jwt.encode(
         claims=jwt_data,
@@ -29,22 +33,20 @@ def create_access_token(
 
 
 async def parse_jwt_user_data_optional(
-    token: str = Depends(oauth2_scheme),
+    token: Annotated[str, Cookie(..., alias="access_token")] = None,
 ) -> JWTData | None:
     if not token:
         return None
-
     try:
         payload = jwt.decode(
             token,
             auth_settings.ACCESS_TOKEN_SECRET_KEY,
             algorithms=[auth_settings.JWT_ALGORITHM],
         )
+        return JWTData(**payload)
 
     except JWTError:
         raise InvalidToken()
-
-    return JWTData(**payload)
 
 
 async def parse_jwt_user_data(
