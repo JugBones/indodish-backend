@@ -14,12 +14,6 @@ restaurant = Table(
     ),
     Column("name", TEXT, nullable=False, unique=True),
     Column("description", TEXT, nullable=True),
-    Column(
-        "user_id",
-        ForeignKey("user.id", ondelete="CASCADE"),
-        nullable=False,
-        unique=True,
-    ),
     Column("phone_number", TEXT, nullable=False, unique=True),
     Column(
         "address_id",
