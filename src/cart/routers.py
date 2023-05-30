@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Cookie
 from src.auth.jwt import parse_jwt_user_data
 from src.auth.schemas import JWTData
 from src.cart import services
@@ -14,14 +14,16 @@ async def get_user_cart(jwt_data: JWTData = Depends(parse_jwt_user_data)):
 
 @router.post("/")
 async def insert_dish_to_cart(
-    dish_info: InsertDishToCart, jwt_data: JWTData = Depends(parse_jwt_user_data)
+    dish_info: InsertDishToCart,
+    jwt_data: JWTData = Depends(parse_jwt_user_data),
 ):
-    return await services.upsert_to_cart(jwt_data, dish_info)
+    return await services.insert_to_cart(jwt_data, dish_info)
 
 
-@router.post("/")
-async def update_dish_from_cart(
-    dish_info: UpdateCartItem, jwt_data: JWTData = Depends(parse_jwt_user_data)
+@router.put("/")
+async def update_to_cart(
+    dish_info: UpdateCartItem,
+    jwt_data: JWTData = Depends(parse_jwt_user_data),
 ):
     return await services.update_to_cart(jwt_data, dish_info)
 

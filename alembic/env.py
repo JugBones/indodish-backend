@@ -25,6 +25,11 @@ from src.users.models import user  # noqa
 from src.auth.models import refresh_token  # noqa
 from src.restaurants.models import restaurant  # noqa
 from src.contact_form.models import contact_form  # noqa
+from src.images.models import image  # noqa
+from src.restaurant_image.models import restaurant_image  # noqa
+from src.dishes.models import dish  # noqa
+from src.dishes_image.models import dish_image  # noqa
+from src.cart.models import cart  # noqa
 
 target_metadata = metadata
 

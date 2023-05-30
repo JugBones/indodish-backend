@@ -12,6 +12,7 @@ from src.restaurants.routers import router as restaurant_router
 from src.cart.routers import router as cart_router
 from src.restaurant_image.routers import router as restaurant_image_router
 from src.images.routers import router as images_router
+from src.dishes.routers import router as dish_router
 
 app = FastAPI(
     title="IndODish API",
@@ -38,6 +39,7 @@ app.include_router(cart_router)
 app.include_router(contact_form_router)
 app.include_router(restaurant_image_router)
 app.include_router(images_router)
+app.include_router(dish_router)
 
 
 @app.get("/", tags=["health"])

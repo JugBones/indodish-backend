@@ -3,11 +3,11 @@ from pydantic import BaseModel
 
 class InsertDishToCart(BaseModel):
     dish_id: str
-    quantity: str
+    quantity: int
 
 
 class RemoveDishFromCart(BaseModel):
-    dish_id: str
+    cart_item_id: str
 
 
 class UpdateCartItem(BaseModel):

@@ -8,71 +8,40 @@ from src.dishes.models import dish
 
 async def get_from_cart(jwt_data: JWTData):
     select_query = (
-        select(cart)
-        .where(cart.c.user_id == jwt_data.user_id)
-        .join(dish)
-        .filter(dish.c.id == cart.c.dish_id)
+        select([cart, dish]).join(dish).filter(cart.c.user_id == jwt_data.user_id)
     )
 
-    return await database.fetch_all(select_query)
+    results = await database.fetch_all(select_query)
+
+    return [
+        {
+            "id": r.id,
+            "name": r.name,
+            "quantity": r.quantity,
+            "price": r.price,
+        }
+        for r in results
+    ]
 
 
-async def upsert_to_cart(jwt_data: JWTData, dish_info: InsertDishToCart):
-    transaction = await database.transaction()
+async def insert_to_cart(jwt_data: JWTData, dish_info: InsertDishToCart):
+    insert_query = cart.insert().values(
+        {
+            "user_id": jwt_data.user_id,
+            "dish_id": dish_info.dish_id,
+            "quantity": dish_info.quantity,
+        }
+    )
 
-    try:
-        select_query = cart.select().where(
-            cart.c.dish_id == dish_info.dish_id and cart.c.user_id == jwt_data.user_id
-        )
-
-        cart_item = await database.fetch_one(select_query)
-
-        if cart_item is None:
-            insert_query = cart.insert().values(
-                {
-                    "user_id": jwt_data.user_id,
-                    "dish_id": dish_info.dish_id,
-                    "quantity": dish_info.quantity,
-                }
-            )
-
-            return await database.execute(insert_query)
-
-        update_query = (
-            cart.update()
-            .where(
-                cart.c.dish_id == dish_info.dish_id
-                and cart.c.user_id == jwt_data.user_id
-            )
-            .values(
-                {
-                    "user_id": jwt_data.user_id,
-                    "dish_id": dish_info.dish_id,
-                    "quantity": dish_info.quantity,
-                }
-            )
-        )
-
-        return await database.execute(update_query)
-
-    except Exception as e:
-        await transaction.rollback()
-        raise e
-
-    else:
-        await transaction.commit()
+    return await database.execute(insert_query)
 
 
 async def update_to_cart(jwt_data: JWTData, dish_info: UpdateCartItem):
     update_query = (
         cart.update()
-        .where(
-            cart.c.dish_id == dish_info.dish_id and cart.c.user_id == jwt_data.user_id
-        )
+        .where(cart.c.id == dish_info.cart_item_id)
         .values(
             {
-                "user_id": jwt_data.user_id,
-                "dish_id": dish_info.dish_id,
                 "quantity": dish_info.quantity,
             }
         )
@@ -82,8 +51,6 @@ async def update_to_cart(jwt_data: JWTData, dish_info: UpdateCartItem):
 
 
 async def remove_from_cart(jwt_data: JWTData, dish_info: RemoveDishFromCart):
-    delete_query = cart.delete().where(
-        cart.c.dish_id == dish_info.dish_id and cart.c.user_id == jwt_data.user_id
-    )
+    delete_query = cart.delete().where(cart.c.id == dish_info.cart_item_id)
 
     return await database.execute(delete_query)
