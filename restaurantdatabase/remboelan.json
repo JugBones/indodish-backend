@@ -1,0 +1,50 @@
+{
+  "name": "Remboelan",
+  "description": "Serving Indonesian soul food",
+  "latitude": -6.227001545217114,
+  "longitude": 106.79705281000828,
+  "rating_sum": 4500,
+  "number_of_voters": 990,
+  "menu": [
+        {
+      "name": "Bistik Lidah Jawa",
+      "description": "Javanese style beef tongue stew served with pottato wedges, carrot, green beans, pickle, and thun pottato crisp, poured with our signature traditional kampoeng sauce",
+      "category": "main_course",
+      "price": 80000,
+      "rating_sum": 5000,
+      "number_of_voters": 1000
+    },
+    {
+      "name": "Lumpia Semarang",
+      "description": "Traditional Semarang (Central Java) 'bamboo shoot' spring rolls served with special sweet sauce, with choice of fresh or fried",
+      "category": "snack",
+      "price": 40000,
+      "rating_sum": 4500,
+      "number_of_voters": 900
+    },
+    {
+      "name": "Sate Ayam Tugu Muda",
+      "description": "Chicken Satay served with peanut sauce",
+      "category": "appetizer",
+      "price": 45000,
+      "rating_sum": 4000,
+      "number_of_voters": 800
+    },
+    {
+      "name": "Es Campur",
+      "description": "Shredded ice with combination of jackfruit, fermented cassava, sugar palm fruit, coconut meat, jelly, avocado, and black grass jelly with manalagi syrup and condensed milk",
+      "category": "dessert",
+      "price": 30000,
+      "rating_sum": 4500,
+      "number_of_voters": 950
+    },
+    {
+      "name": "Jus Kedondong Kiamboy",
+      "description": "Golden apple juice with a hint of salted plum",
+      "category": "beverages",
+      "price": 20000,
+      "rating_sum": 3500,
+      "number_of_voters": 800
+    }
+  ]
+}

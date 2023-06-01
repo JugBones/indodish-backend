@@ -1,0 +1,50 @@
+{
+    "name": "Seribu Rasa",
+    "description": "Inspired by the region`s culinary wealth, Seribu Rasa (One Thousand Flavors) offers delectable local dishes and seafood that embody the richness of Southeast Asian and Indonesian Flavors. Each traditional recipe is prepared with the freshest ingredients and refined by our Chef`s culinary skills, bringing our customers to fascinating gastronomic journey of “One Thousand Flavors”.",
+    "latitude": -6.195530,
+    "longitude": 106.825120,
+    "rating_sum": 4600,
+    "number_of_voters": 4218,
+    "menu": [
+        {
+            "name": "Tongseng Kambing Brebes",
+            "description": "Lamb stewed with traditional spices and hint of sweet soy sauce",
+            "category": "main_course",
+            "price": 140000,
+            "rating_sum": 4900,
+            "number_of_voters": 1000
+        },
+        {
+            "name": "Oriental Seafood Cakwe",
+            "description": "Fried traditional Chinese dough filled with ground squid and prawn, glazed with sweet and sour sauce",
+            "category": "snack",
+            "price": 75000,
+            "rating_sum": 4600,
+            "number_of_voters": 700
+        },
+        {
+            "name": "Udang Gulung Tempo Doeloe",
+            "description": "Fried oriental style prawn cake served with Chef's special mayonnaise dressing",
+            "category": "appetizer",
+            "price": 77000,
+            "rating_sum": 4300,
+            "number_of_voters": 650
+        },
+        {
+            "name": "Es Dawet Ndoro Putri",
+            "description": "Classic ice dawet added with sweet red bean dressed with premium homemade durian jam",
+            "category": "desert",
+            "price": 62000,
+            "rating_sum": 4400,
+            "number_of_voters": 600
+        },
+        {
+            "name": "Wedang Kemuning",
+            "description": "Osmanthus, agave, ginger, chamomile",
+            "category": "beverages",
+            "price": 59000,
+            "rating_sum": 4100,
+            "number_of_voters": 460
+        }
+    ]
+}

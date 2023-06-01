@@ -1,0 +1,50 @@
+{
+    "name": "Pagi Sore",
+    "description": "Tradisi dalam menjaga cita rasa yang otentik, tempat yang modern dan nyaman, serta pelayanan yang ramah, adalah semua tentang Pagi Sore Restaurant. Pagi Sore telah berdiri sejak tahun 1973, dan terus mengembangkan diri untuk memastikan cita rasa dan kualitas terbaik. Kami melakukan banyak perjalanan untuk mempelajari berbagai hal, termasuk mencari bahan baku pilihan. Dan kami bangga menjadi salah satu Restoran Padang terbaik.",
+    "latitude": -6.277535,
+    "longitude": 106.799261,
+    "rating_sum": 4600,
+    "number_of_voters": 7427,
+    "menu": [
+        {
+            "name": "Rendang Daging 1/2 Kg",
+            "description": "",
+            "category": "main_course",
+            "price": 132000,
+            "rating_sum": 5000,
+            "number_of_voters": 1000
+        },
+        {
+            "name": "Kikil Cabe Ijo",
+            "description": "",
+            "category": "snack",
+            "price": 22000,
+            "rating_sum": 4300,
+            "number_of_voters": 790
+        },
+        {
+            "name": "Gulai Otak",
+            "description": "",
+            "category": "appetizer",
+            "price": 22000,
+            "rating_sum": 4500,
+            "number_of_voters": 970
+        },
+        {
+            "name": "Es Kopyor",
+            "description": "",
+            "category": "desert",
+            "price": 44000,
+            "rating_sum": 4900,
+            "number_of_voters": 870
+        },
+        {
+            "name": "Jus Markisa",
+            "description": "",
+            "category": "beverages",
+            "price": 33000,
+            "rating_sum": 4500,
+            "number_of_voters": 590
+        }
+    ]
+}

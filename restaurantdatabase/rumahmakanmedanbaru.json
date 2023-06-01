@@ -1,0 +1,50 @@
+{
+    "name": "Rumah Makan Medan Baru",
+    "description": "Tradisi dalam menjaga cita rasa yang otentik, tempat yang modern dan nyaman, serta pelayanan yang ramah, adalah semua tentang Pagi Sore Restaurant. Pagi Sore telah berdiri sejak tahun 1973, dan terus mengembangkan diri untuk memastikan cita rasa dan kualitas terbaik. Kami melakukan banyak perjalanan untuk mempelajari berbagai hal, termasuk mencari bahan baku pilihan. Dan kami bangga menjadi salah satu Restoran Padang terbaik.",
+    "latitude": -6.158870,
+    "longitude": 106.831759,
+    "rating_sum": 4500,
+    "number_of_voters": 5177,
+    "menu": [
+        {
+            "name": "Daging Ikan Gulai",
+            "description": "",
+            "category": "main_course",
+            "price": 37900,
+            "rating_sum": 4800,
+            "number_of_voters": 870
+        },
+        {
+            "name": "Dendeng",
+            "description": "",
+            "category": "snack",
+            "price": 22750,
+            "rating_sum": 4500,
+            "number_of_voters": 750
+        },
+        {
+            "name": "Tempe Teri",
+            "description": "",
+            "category": "appetizer",
+            "price": 20000,
+            "rating_sum": 4300,
+            "number_of_voters": 680
+        },
+        {
+            "name": "Puding Kelapa",
+            "description": "",
+            "category": "desert",
+            "price": 36000,
+            "rating_sum": 4800,
+            "number_of_voters": 980
+        },
+        {
+            "name": "Jus Sirsak",
+            "description": "",
+            "category": "beverages",
+            "price": 27500,
+            "rating_sum": 4200,
+            "number_of_voters": 860
+        }
+    ]
+}

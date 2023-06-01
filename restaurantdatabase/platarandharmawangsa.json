@@ -1,0 +1,50 @@
+{
+    "name": "Plataran Dharmawangsa",
+    "description": "Designed to resemble a traditional royal Javanese family compound, the restaurant includes a 150-year-old wooden heritage Joglo house, wooden Javanese pavilions, a prayer house aged more than 50 years old, and an elegant glass-roofed conservatory, overlooking a beautiful tempo doeloe style garden that is characteristic of houses in this exclusive area.",
+    "latitude": -6.254590,
+    "longitude": 106.802808,
+    "rating_sum": 4600,
+    "number_of_voters": 3230,
+    "menu": [
+        {
+            "name": "Mangkokan Teri Medan",
+            "description": "Mangkokan leaf, salted fish, capsicum, tomato, ginges",
+            "category": "main_course",
+            "price": 62000,
+            "rating_sum": 4800,
+            "number_of_voters": 900
+        },
+        {
+            "name": "Sukun Telur Asin",
+            "description": "Breadfruit, salted egg, sesame seed",
+            "category": "snack",
+            "price": 79000,
+            "rating_sum": 4700,
+            "number_of_voters": 860
+        },
+        {
+            "name": "Lodeh Siput Kedondong",
+            "description": "Escargot, kedondong leaf, chayote, papaya, long bean, corn, eggplant, soya milk, coconut milk, and shrimp paste sambal, served with cassava crackers.",
+            "category": "appetizer",
+            "price": 139000,
+            "rating_sum": 4200,
+            "number_of_voters": 850
+        },
+        {
+            "name": "Es Podeng",
+            "description": "Podeng shaved ice, coconut, fermented pandan glutinous rice, jackfruit, avocado, rosella jelly, teng - teng crumble, bread, coconut milk",
+            "category": "desert",
+            "price": 49000,
+            "rating_sum": 4900,
+            "number_of_voters": 700
+        },
+        {
+            "name": "Es Cincau Hijau Lychee",
+            "description": "Green grass jelly, lychee and palm sugar",
+            "category": "beverages",
+            "price": 50000,
+            "rating_sum": 4400,
+            "number_of_voters": 680
+        }
+    ]
+}
