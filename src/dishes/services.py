@@ -1,11 +1,44 @@
 from src.database import database
-from sqlalchemy import select
+from sqlalchemy import select, func
 from src.dishes.models import dish
 
 
 async def get_popular_cuisine():
-    select_query = select([dish]).order_by(dish.c.rating_sum / dish.c.number_of_voters)
+    select_query = select([dish])
 
+    results = await database.fetch_all(select_query)
+    dishes = [
+        {
+            "id": r.id,
+            "name": r.name,
+            "descriptiion": r.description,
+            "price": r.price,
+            "rating_sum": r.rating_sum,
+            "number_of_voters": r.number_of_voters,
+        }
+        for r in results
+    ]
+
+    dishes.sort(key=lambda x: (x["rating_sum"] / x["number_of_voters"]), reverse=True)
+    return dishes[0:8]
+
+
+async def get_dish(dish_name: str):
+    select_query = select([dish]).where(dish.c.name == dish_name)
+
+    result = await database.fetch_one(select_query)
+
+    return {
+        "id": result.id,
+        "name": result.name,
+        "description": result.description,
+        "rating_sum": result.rating_sum,
+        "number_of_voters": result.number_of_voters,
+    }
+
+
+async def get_region_dishes(region_name):
+    select_query = select([dish]).where(dish.c.region == region_name)
     results = await database.fetch_all(select_query)
     return [
         {
@@ -13,6 +46,7 @@ async def get_popular_cuisine():
             "name": r.name,
             "descriptiion": r.description,
             "price": r.price,
+            "region": r.region,
             "rating_sum": r.rating_sum,
             "number_of_voters": r.number_of_voters,
         }

@@ -25,6 +25,17 @@ async def get_from_cart(jwt_data: JWTData):
 
 
 async def insert_to_cart(jwt_data: JWTData, dish_info: InsertDishToCart):
+    select_query = (
+        select([cart])
+        .where(cart.c.user_id == jwt_data.user_id)
+        .filter(cart.c.dish_id == dish_info.dish_id)
+    )
+
+    cart_item = await database.fetch_one(select_query)
+
+    if cart_item is not None:
+        return cart_item.id
+
     insert_query = cart.insert().values(
         {
             "user_id": jwt_data.user_id,

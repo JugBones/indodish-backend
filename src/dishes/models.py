@@ -31,6 +31,10 @@ dish = Table(
     Column("price", MONEY, nullable=False),
     Column("rating_sum", INTEGER, nullable=False, default=0),
     Column("number_of_voters", INTEGER, nullable=False, default=0),
+    Column(
+        "region",
+        ENUM("jawa", "kalimantan", "papua", "sulawesi", "sumatra", name="dish_region"),
+    ),
     Column("created_at", DateTime, server_default=func.now(), nullable=False),
     Column("updated_at", DateTime, onupdate=func.now(), nullable=True),
 )

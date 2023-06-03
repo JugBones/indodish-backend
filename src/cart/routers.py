@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Cookie
+from fastapi import APIRouter, Depends
 from src.auth.jwt import parse_jwt_user_data
 from src.auth.schemas import JWTData
 from src.cart import services

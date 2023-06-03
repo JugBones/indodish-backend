@@ -27,13 +27,13 @@ def get_restaurant_image(restaurant_name: str, size: int = None):
 
 
 @router.get("/dish-image")
-def get_dish_image(restaurant_name: str, dish_name: str, size: int = None):
+def get_dish_image(dish_name: str, size: int = None):
     if size is None:
         return FileResponse(
             os.path.join(
                 "img",
                 "dishes_image",
-                f"{''.join(restaurant_name.lower().split(' '))}-{''.join(dish_name.lower().split(' '))}.webp",  # noqa
+                f"{''.join(dish_name.lower().split(' '))}-500.webp",  # noqa
             )
         )
 
@@ -41,6 +41,6 @@ def get_dish_image(restaurant_name: str, dish_name: str, size: int = None):
         os.path.join(
             "img",
             "dishes_image",
-            f"{''.join(restaurant_name.lower().split(' '))}-{''.join(dish_name.lower().split(' '))}-{size}.webp",  # noqa
+            f"{''.join(dish_name.lower().split(' '))}-{size}.webp",  # noqa
         )
     )
