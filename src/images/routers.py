@@ -14,7 +14,8 @@ def get_restaurant_image(restaurant_name: str, size: int = None):
                 "img",
                 "restaurant_image",
                 f"{''.join(restaurant_name.lower().split(' '))}.webp",
-            )
+            ),
+            media_type="image/webp",
         )
 
     return FileResponse(
@@ -22,7 +23,8 @@ def get_restaurant_image(restaurant_name: str, size: int = None):
             "img",
             "restaurant_image",
             f"{''.join(restaurant_name.lower().split(' '))}-{size}.webp",
-        )
+        ),
+        media_type="image/webp",
     )
 
 
@@ -34,7 +36,8 @@ def get_dish_image(dish_name: str, size: int = None):
                 "img",
                 "dishes_image",
                 f"{''.join(dish_name.lower().split(' '))}-500.webp",  # noqa
-            )
+            ),
+            media_type="image/webp",
         )
 
     return FileResponse(
@@ -42,5 +45,6 @@ def get_dish_image(dish_name: str, size: int = None):
             "img",
             "dishes_image",
             f"{''.join(dish_name.lower().split(' '))}-{size}.webp",  # noqa
-        )
+        ),
+        media_type="image/webp",
     )

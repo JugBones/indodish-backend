@@ -24,7 +24,9 @@ async def get_popular_cuisine():
 
 
 async def get_dish(dish_name: str):
-    select_query = select([dish]).where(dish.c.name == dish_name)
+    select_query = select([dish]).where(
+        func.lower(dish.c.name).contains(dish_name.lower())
+    )
 
     result = await database.fetch_one(select_query)
 
@@ -32,9 +34,30 @@ async def get_dish(dish_name: str):
         "id": result.id,
         "name": result.name,
         "description": result.description,
+        "price": result.price,
         "rating_sum": result.rating_sum,
         "number_of_voters": result.number_of_voters,
     }
+
+
+async def get_dishes(dish_name: str):
+    select_query = select([dish]).where(
+        func.lower(dish.c.name).contains(dish_name.lower())
+    )
+
+    results = await database.fetch_all(select_query)
+
+    return [
+        {
+            "id": result.id,
+            "name": result.name,
+            "description": result.description,
+            "price": result.price,
+            "rating_sum": result.rating_sum,
+            "number_of_voters": result.number_of_voters,
+        }
+        for result in results
+    ]
 
 
 async def get_region_dishes(region_name):

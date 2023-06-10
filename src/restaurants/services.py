@@ -23,6 +23,24 @@ async def get_nearby_restaurants(latitude: float, longitude: float):
     ]
 
 
+async def get_restaurants(q: str):
+    select_query = select([restaurant]).where(
+        func.lower(restaurant.c.name).contains(q.lower())
+    )
+
+    restaurants = await database.fetch_all(select_query)
+
+    return [
+        {
+            "id": r.id,
+            "name": r.name,
+            "rating_sum": r.rating_sum,
+            "number_of_voters": r.number_of_voters,
+        }
+        for r in restaurants
+    ]
+
+
 async def get_restaurant(restaurant_name: str):
     select_restaurant_query = (
         select([restaurant, address])
