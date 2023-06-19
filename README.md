@@ -1,4 +1,4 @@
-# IndODish-BackEnd
+# IndODish - BackEnd
 
 ## Project Details
 Here is our attempt developing the [FrontEnd](https://github.com/JugBones/indodish-frontend) and 
