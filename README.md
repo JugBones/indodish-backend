@@ -10,7 +10,7 @@ Here is our attempt developing the [FrontEnd](https://github.com/JugBones/indodi
 - NextJS
 - TypeScript
 - SCSS
-- Vercel
+- Biznet Gio Cloud
 - etc.
 
 `BackEnd`
