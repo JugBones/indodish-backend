@@ -1,5 +1,7 @@
 # IndODish - BackEnd
 
+COMP6703001 - Web Application Development and Security (Final Project)
+
 ## Project Details
 Here is our attempt developing the [FrontEnd](https://github.com/JugBones/indodish-frontend) and 
 [BackEnd](https://github.com/JugBones/indodish-backend) of a Food Delivery Web application called IndoDish using:
